@@ -86,8 +86,75 @@ var csvToTable = {
         console.log("job_rankings");
         console.log(job_rankings);
         
+        var cost_matrix = this.padJobRankingsData(job_rankings);
+        
+        console.log("cost_matrix");
+        console.log(cost_matrix);
+
+//    # Perform calculation
+//    job_matches = BestJobFit(job_rankings, student_ids, job_ids)
+        var job_matches = this.bestJobFit(job_rankings, student_ids, job_ids)
+//    # Render in the template specified by path
+//    template_values = { 'student_ids': student_ids,
+//                        'job_ids': job_ids,
+//                        'job_rankings': job_rankings,
+//                        'matches': job_matches }
+//    with open('output.html', 'w') as f:
+//        html_output = template.render(template_values)
+//        f.write(html_output)        
+        console.log("job_matches");
+        console.log(job_matches);        
+        
         return job_rankings;
     },
+    
+    padJobRankingsData: function (job_rankings) {
+        var maximum_rank = 999999;
+        var cost_matrix = new Array();
+        
+        for (var row_idx = 0; row_idx < job_rankings.length; row_idx++ ) {
+            var new_row = job_rankings[row_idx];
+            for (var col_idx = 0; col_idx < new_row.length; col_idx++ ) {
+                var ranking_value = job_rankings[row_idx][col_idx];
+                if ((ranking_value=='') || (ranking_value=='0')) {
+                    ranking_value = (maximum_rank * 2).toString();
+                }
+                new_row[col_idx] = parseInt(ranking_value);
+            }
+            cost_matrix.push(new_row);
+        }
+        
+        return cost_matrix;
+    },
+    
+//def BestJobFit(job_rankings, student_ids, job_ids):
+//    # Using the excellent munkres module (http://bmc.github.com/munkres/).
+//    #from munkres import Munkres
+//    m = Munkres()
+//    indexes = m.compute(job_rankings)
+//    bestfit_array = []
+//    for row, column in indexes:
+//        student_id = student_ids[row]
+//        job_id = job_ids[column]
+//        value = job_rankings[row][column]
+//        bestfit_array.append({'student_id': student_id, 'job_id': job_id, 'ranking': value})
+//    return bestfit_array    
+
+    bestJobFit: function(job_rankings, student_ids, job_ids) {
+        var m = new Munkres();
+        var indices = m.compute(job_rankings);
+        var bestfit_array = new Array();
+        for( var i = 0; i < indices.length; i++ ) {
+            var row = indices[i][0], col = indices[i][1];
+            var student_id = student_ids[row];
+            var job_id = job_ids[col];
+            var ranking = job_rankings[row][col];
+            bestfit_array.push({"student_id": student_id, "job_id": job_id, "ranking": ranking});            
+        }
+        
+        return bestfit_array;
+    },
+
     computeAssignments: function (data_table) {
         return data_table;  
     },
