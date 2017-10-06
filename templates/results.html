@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Untitled Document</title>
+		<style type="text/css">
+		<!--
+		body {
+			font: 100% Verdana, Arial, Helvetica, sans-serif;
+			background: #666666;
+			margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+			padding: 0;
+			text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+			color: #000000;
+			background-color: #E5E;
+		}
+
+		td, th {
+		  text-align: center;
+		}
+
+		.oneColElsCtr #container {
+			width: 46em;
+			background: #909;
+			margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+			border: 1px solid #FFFFFF;
+			text-align: left; /* this overrides the text-align: center on the body element. */
+		}
+		.oneColElsCtr #mainContent {
+			padding: 0 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+		}
+		body,td,th {
+			color: #FFF;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+		-->
+		</style>
+	</head>
+
+	<body class="oneColElsCtr">
+
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+		    <ul class=flashes>
+		    {% for message in messages %}
+		      <li>{{ message }}</li>
+		    {% endfor %}
+		    </ul>
+		  {% endif %}
+		{% endwith %}
+
+		<div id="container">
+		  <div id="mainContent">
+		    <h1> Kellogg Job Assignment Solver </h1>
+		    <h2>Results:</h2>
+			<table width="100%" border="1" cellspacing="0" cellpadding="0">
+			  <tr>
+			    <th scope="col">Student</th>
+			    <th scope="col">Position</th>
+			    <th scope="col">Priority</th>
+		      </tr>
+			  {% for match_item in matches %}
+		  	    <tr><td>{{ match_item.student_id }}</td><td>{{ match_item.job_id }}</td><td>{{ match_item.ranking }}</td></tr>
+		      {% endfor %}
+			</table>
+		    <p></p>
+			<!-- 
+			<h2>Original Data:</h2>
+			<table width="100%" border="1" cellspacing="0" cellpadding="0">
+			  <tr><th scope="col">&nbsp;</th>
+			  {% for job_id in job_ids %}
+			    <th scope="col">{{ job_id }}</th>
+			  {% endfor %}
+			  </tr>
+			  {% for job_ranking in job_rankings %}
+			    <tr>
+				<td>&nbsp;</td>
+				{% for ranking in job_ranking %}
+				  <td>{{ ranking }}</td>
+				{% endfor %}
+				</tr>
+			  {% endfor %}
+			</table>
+			-->
+			
+			<!-- end #mainContent --></div>
+		<!-- end #container --></div>
+	</body>
+</html>

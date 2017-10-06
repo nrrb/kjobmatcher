@@ -29,21 +29,35 @@ body,td,th {
 	font-family: Tahoma, Geneva, sans-serif;
 }
 -->
-</style></head>
+</style>
+</head>
 
-<body class="oneColElsCtr">
+	<body class="oneColElsCtr">
 
-<div id="container">
-  <div id="mainContent">
-    <h1> Kellogg Job Assignment Solver </h1>
-    <p>
-    	<form action="{{ upload_url }}" method="POST" enctype="multipart/form-data">Upload Qualtrics CSV File: <input type="file" name="file"><br> <input type="submit" name="submit" value="Submit"> </form>
-    </p>
-    <!--
-	<h2>Qualtrics CSV How-To:</h2>
-    <p></p>
-	-->
-	<!-- end #mainContent --></div>
-<!-- end #container --></div>
-</body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+		<div id="container">
+		  <div id="mainContent">
+		    <h1> Kellogg Job Assignment Solver </h1>
+		    <p>
+		    	<form action="/" method="POST" enctype="multipart/form-data">
+		    		Upload Qualtrics CSV File: <input type="file" name="file"><br>
+		    		<input type="submit" name="submit" value="Submit"> 
+		    	</form>
+		    </p>
+		    <!--
+			<h2>Qualtrics CSV How-To:</h2>
+		    <p></p>
+			-->
+			<!-- end #mainContent --></div>
+		<!-- end #container --></div>
+	</body>
 </html>
