@@ -1,6 +1,6 @@
 # README #
 
-This is a Google App Engine app that solves a specific problem for the Kellogg Board Fellows program at the Kellogg School of Management.
+This is a web app that solves a specific problem for the Kellogg Board Fellows program at the Kellogg School of Management.
 
 ### Who do I talk to? ###
 
