@@ -6,33 +6,33 @@
 <style type="text/css">
 <!--
 body {
-	font: 100% Verdana, Arial, Helvetica, sans-serif;
-	background: #666666;
-	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
-	padding: 0;
-	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
-	color: #000000;
-	background-color: #E5E;
+    font: 100% Verdana, Arial, Helvetica, sans-serif;
+    background: #666666;
+    margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+    padding: 0;
+    text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+    color: #000000;
+    background-color: #E5E;
 }
 .oneColElsCtr #container {
-	width: 46em;
-	background: #909;
-	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
-	border: 1px solid #FFFFFF;
-	text-align: left; /* this overrides the text-align: center on the body element. */
+    width: 46em;
+    background: #909;
+    margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+    border: 1px solid #FFFFFF;
+    text-align: left; /* this overrides the text-align: center on the body element. */
 }
 .oneColElsCtr #mainContent {
-	padding: 0 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+    padding: 0 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
 }
 body,td,th {
-	color: #FFF;
-	font-family: Tahoma, Geneva, sans-serif;
+    color: #FFF;
+    font-family: Tahoma, Geneva, sans-serif;
 }
 -->
 </style>
 </head>
 
-	<body class="oneColElsCtr">
+    <body class="oneColElsCtr">
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
@@ -44,20 +44,22 @@ body,td,th {
   {% endif %}
 {% endwith %}
 
-		<div id="container">
-		  <div id="mainContent">
-		    <h1> Kellogg Job Assignment Solver </h1>
-		    <p>
-		    	<form action="/" method="POST" enctype="multipart/form-data">
-		    		Upload Qualtrics CSV File: <input type="file" name="file"><br>
-		    		<input type="submit" name="submit" value="Submit"> 
-		    	</form>
-		    </p>
-		    <!--
-			<h2>Qualtrics CSV How-To:</h2>
-		    <p></p>
-			-->
-			<!-- end #mainContent --></div>
-		<!-- end #container --></div>
-	</body>
+        <div id="container">
+          <div id="mainContent">
+            <h1> Kellogg Job Assignment Solver </h1>
+            <p>
+                <form action="/" method="POST" enctype="multipart/form-data">
+                    Upload Qualtrics CSV File: <input type="file" name="file"><br>
+                    <input type="checkbox" name="checkbox_legacy_format" id="checkbox_legacy_format" checked>
+                    <label for="checkbox_legacy_format">Legacy format?</label>
+                    <input type="submit" name="submit" value="Submit">
+                </form>
+            </p>
+            <!--
+            <h2>Qualtrics CSV How-To:</h2>
+            <p></p>
+            -->
+            <!-- end #mainContent --></div>
+        <!-- end #container --></div>
+    </body>
 </html>

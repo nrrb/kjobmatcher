@@ -28,6 +28,7 @@ def upload_file():
             flash('No file part')
             return redirect(request.url)
         file = request.files['file']
+        legacy_file_format = request.form.get('checkbox_legacy_format', False)
         # if user does not select file, browser also
         # submit a empty part without filename
         if file.filename == '':
@@ -36,13 +37,13 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            results = ProcessCSVFile(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            results = ProcessCSVFile(os.path.join(app.config['UPLOAD_FOLDER'], filename), legacy_file_format)
             return render_template('results.html', matches=results['matches'])
     return render_template('index.html')
 
 
-def ProcessCSVFile(csv_file):
-    q = QualtricsKBFCSVImporter(csv_file, legacy_format=True)
+def ProcessCSVFile(csv_file, legacy_file_format):
+    q = QualtricsKBFCSVImporter(csv_file, legacy_format=legacy_file_format)
     organization_matches = q.BestOrganizationFit()
     # Render in the template specified by path
     template_values = { 'respondents': q.respondents,
@@ -53,4 +54,4 @@ def ProcessCSVFile(csv_file):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
