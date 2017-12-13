@@ -60,29 +60,9 @@
 			    <th scope="col">Priority</th>
 		      </tr>
 			  {% for match_item in matches %}
-		  	    <tr><td>{{ match_item.student_id }}</td><td>{{ match_item.job_id }}</td><td>{{ match_item.ranking }}</td></tr>
+		  	    <tr><td>{{ match_item.respondent }}</td><td>{{ match_item.organization }}</td><td>{{ match_item.ranking }}</td></tr>
 		      {% endfor %}
 			</table>
-		    <p></p>
-			<!-- 
-			<h2>Original Data:</h2>
-			<table width="100%" border="1" cellspacing="0" cellpadding="0">
-			  <tr><th scope="col">&nbsp;</th>
-			  {% for job_id in job_ids %}
-			    <th scope="col">{{ job_id }}</th>
-			  {% endfor %}
-			  </tr>
-			  {% for job_ranking in job_rankings %}
-			    <tr>
-				<td>&nbsp;</td>
-				{% for ranking in job_ranking %}
-				  <td>{{ ranking }}</td>
-				{% endfor %}
-				</tr>
-			  {% endfor %}
-			</table>
-			-->
-			
 			<!-- end #mainContent --></div>
 		<!-- end #container --></div>
 	</body>
