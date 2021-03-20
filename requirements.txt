@@ -4,5 +4,5 @@ MarkupSafe==1.0
 munkres==1.0.12
 uWSGI==2.0.15
 Flask==1.1.1
-Jinja2==2.10.1
+Jinja2==2.11.3
 Werkzeug==0.15.6
